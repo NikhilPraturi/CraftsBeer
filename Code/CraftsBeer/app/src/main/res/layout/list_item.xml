@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:id="@+id/list_item_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/beer"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"/>
+        <TextView
+            android:id="@+id/list_item_ounce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12.0"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="23dp"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/list_item_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/list_item_image">
+        <TextView
+            android:id="@+id/list_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Main header"
+            android:textStyle="bold"
+            android:textColor="@color/textviewDefault"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/list_item_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="beer type"
+            android:layout_below="@id/list_item_name"
+            android:textColor="@color/textviewDefault"
+            android:ellipsize="end"/>
+        <TextView
+            android:id="@+id/list_item_abv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="alcohol content"
+            android:layout_below="@id/list_item_name"
+            android:layout_marginTop="20dp"/>
+    </RelativeLayout>
+
+        <ImageButton
+            android:id="@+id/list_item_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add"
+            android:background="#FFFFFF"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"/>
+
+
+</RelativeLayout>
