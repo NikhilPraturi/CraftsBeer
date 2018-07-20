@@ -1,5 +1,6 @@
 package com.akhil.craftsbeer.Activities;
 
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -65,7 +66,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener, 
                 List<Beer> orderedList = new ArrayList<>();
                 orderedList.addAll(ApplicationProperties.getInstance().getBeerList());
                 Collections.sort(orderedList, new AcloholAscending());
-                customListAdapter = new CustomListAdapter(beerList);
+                customListAdapter = new CustomListAdapter(orderedList);
                 listView.setAdapter(customListAdapter);
                 listView.deferNotifyDataSetChanged();
             }
@@ -117,7 +118,7 @@ public class BeerListFragment extends Fragment implements View.OnClickListener, 
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         BeerDetailsFragment beerDetailsFragment = new BeerDetailsFragment();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("beer", beerList.get(i));
+        bundle.putParcelable("beer", (Parcelable) customListAdapter.getItem(i));
         beerDetailsFragment.setArguments(bundle);
         addFragment(beerDetailsFragment, true, "one");
     }
