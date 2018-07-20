@@ -13,18 +13,19 @@ import android.widget.CheckBox;
 import com.akhil.craftsbeer.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by aghatiki on 7/1/2018.
  */
 
-public class FilterAdapter extends ArrayAdapter<String> {
+public class FilterAdapter extends BaseAdapter {
 
-    private ArrayList<String> data;
+    private List<String> data;
     private Context context;
+    private LayoutInflater layoutInflater;
 
-    public FilterAdapter(ArrayList<String> data, Context context) {
-        super(context, R.layout.filter_item, data);
+    public FilterAdapter(List<String> data) {
         this.data = data;
         this.context = context;
     }
@@ -47,29 +48,33 @@ public class FilterAdapter extends ArrayAdapter<String> {
 
     private static class ViewHolder {
         CheckBox checkbox;
+        private View convertView;
+
+        private ViewHolder(View convertView){
+            this.convertView = convertView;
+            checkbox = (CheckBox) convertView.findViewById(R.id.settingCheckbox);
+        }
+
+        public void updateObject(String beerType){
+            checkbox.setText(beerType);
+        }
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ViewHolder viewHolder;
-        final View result;
+    public View getView(int i, @Nullable View view, @NonNull ViewGroup parent) {
+        ViewHolder viewHolder = null;
+        if (view == null) {
 
-        if (convertView == null) {
-            viewHolder = new ViewHolder();
-            convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.filter_item, parent, false);
-            viewHolder.checkbox = (CheckBox) convertView.findViewById(R.id.settingCheckbox);
-
-            result = convertView;
-            convertView.setTag(viewHolder);
-
+            layoutInflater = LayoutInflater.from(parent.getContext());
+            view = layoutInflater.inflate(R.layout.filter_item, null);
+            viewHolder = new ViewHolder(view);
+            view.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-            result = convertView;
+            viewHolder = (ViewHolder) view.getTag();
         }
-        if (data.contains(viewHolder.checkbox.getText())) {
 
-        }
-        return result;
+        viewHolder.updateObject(getItem(i));
+        return view;
     }
 }

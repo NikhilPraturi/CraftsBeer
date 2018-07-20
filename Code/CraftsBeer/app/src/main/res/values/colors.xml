@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FF9900</color>
     <color name="colorPrimaryDark">#FF9900</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FF9900</color>
 
     <color name="dividercolor">#D8D8D8</color>
     <color name="searchview">#ffff</color>

@@ -17,6 +17,8 @@ public class ApplicationProperties {
 
     private List<Beer> cartList = new ArrayList<>();
 
+    private List<String> styleList = new ArrayList<>();
+
     public static ApplicationProperties getInstance() {
         if (Instance == null) {
             Instance = new ApplicationProperties();
@@ -30,5 +32,9 @@ public class ApplicationProperties {
 
     public List<Beer> getCartList() {
         return cartList;
+    }
+
+    public List<String> getStyleList(){
+        return styleList;
     }
 }

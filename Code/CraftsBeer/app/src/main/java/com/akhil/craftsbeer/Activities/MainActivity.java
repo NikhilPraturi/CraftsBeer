@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -133,7 +134,10 @@ public class MainActivity extends AppCompatActivity
             replaceFragment(beerList, false, "");
 
         } else if (id == R.id.nav_filter) {
-            Toast.makeText(this, "Filter is yet to be implemented.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Filter is yet to be implemented.", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this,Filter.class);
+            startActivity(intent);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -183,6 +187,7 @@ public class MainActivity extends AppCompatActivity
 
 
                     }
+                    m_applicationProperties.getStyleList().addAll(filterSet);
                     int size = filterSet.size();
                 } catch (JSONException e) {
                     e.printStackTrace();

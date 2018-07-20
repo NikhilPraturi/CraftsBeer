@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.akhil.craftsbeer.DataModel.Beer;
+import com.akhil.craftsbeer.Properties.ApplicationProperties;
 import com.akhil.craftsbeer.R;
 
 
@@ -82,7 +83,7 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
         }
 
 
-        private void updateObject(Beer beer) {
+        private void updateObject(final Beer beer) {
             if (beer.getOunces().length() < 4) {
                 ounce.setText("0" + beer.getOunces());
             } else {
@@ -100,7 +101,22 @@ public class CustomListAdapter extends BaseAdapter implements Filterable {
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    add.setImageResource(R.drawable.remove);
+                    if(beer.isAddedTocart() == 0) {
+                        add.setImageResource(R.drawable.remove);
+                        for (Beer selectedBeer : ApplicationProperties.getInstance().getBeerList()) {
+                            if (selectedBeer.equals(beer)) {
+                                selectedBeer.setAddedTocart(1);
+                            }
+                        }
+                    }
+                    else {
+                        add.setImageResource(R.drawable.add);
+                        for (Beer selectedBeer : ApplicationProperties.getInstance().getBeerList()) {
+                            if (selectedBeer.equals(beer)) {
+                                selectedBeer.setAddedTocart(0);
+                            }
+                        }
+                    }
                 }
             });
         }
